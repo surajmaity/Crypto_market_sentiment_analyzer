@@ -5,7 +5,7 @@ This project is a Python-based tool that fetches real-time cryptocurrency data (
 ## ✨ Features
 - **Real-Time Data**: Fetches current prices, 24h % change, and volume from the CoinGecko API.
 - **News Aggregation**: Gathers the latest news for each crypto using the NewsAPI.
-- **Offline Sentiment Analysis**: Analyzes news headlines using a combination of **VADER** and **TextBlob** for a robust sentiment score. No external LLM APIs are needed for this step.
+- **Offline Sentiment Analysis**: Analyzes news headlines using a combination of **VADER** and **TextBlob** for a good average and robust sentiment score. No external LLM APIs are needed for this step.
 - **Dynamic HTML Reports**: Generates a clean, easy-to-read HTML report with all the consolidated data.
 
 ---
@@ -63,7 +63,7 @@ The script will fetch the latest data, perform the analysis, and generate a repo
 
 ## 🤖 History and Use of LLMs
 
-While this project uses offline libraries (VADER, TextBlob) for the final sentiment analysis to meet the requirements, LLMs were instrumental in the development process. Here is a simulated history of prompts used:
+While this project uses offline libraries (VADER, TextBlob) for the rough sentiment analysis to meet the requirements, LLMs were instrumental in the development process. Here is a simulated history of prompts used:
 
 1.  **Initial Planning:** *"Act as a senior software architect. Design a modular Python application for a crypto sentiment analyzer. The components should be: data collection, sentiment analysis, and report generation. What would the file structure and key functions look like?"*
 2.  **API Selection:** *"Compare public, free-to-use APIs for cryptocurrency prices. I need price, 24h volume, and 24h % change for Bitcoin, Ethereum, and Solana in a single call. Provide Python code examples for CoinGecko vs. CoinCap."*
