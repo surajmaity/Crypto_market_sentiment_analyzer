@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypto Market Report</title>
+    <style>
+        body { font-family: sans-serif; margin: 2em; background-color: #f4f4f9; color: #333; }
+        h1, h2 { color: #2c3e50; }
+        table { width: 100%; border-collapse: collapse; margin-bottom: 2em; }
+        th, td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #3498db; color: white; }
+        tr:nth-child(even) { background-color: #ecf0f1; }
+        .crypto-card { background: white; padding: 1.5em; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 1.5em; }
+    </style>
+</head>
+<body>
+    <h1>Crypto Market Report - {{ report_date }}</h1>
+
+    <h2>📊 Market Overview</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Crypto</th>
+                <th>Price (USD)</th>
+                <th>24h Change</th>
+                <th>24h Volume</th>
+                <th>Sentiment</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for crypto in cryptos %}
+            <tr>
+                <td><strong>{{ crypto.name }} ({{ crypto.symbol | upper }})</strong></td>
+                <td>${{ "{:,.2f}".format(crypto.price) }}</td>
+                <td style="color: {{ 'green' if crypto.change > 0 else 'red' }};">{{ "{:,.2f}".format(crypto.change) }}%</td>
+                <td>${{ "{:,.0f}".format(crypto.volume) }}</td>
+                <td>{{ "{:.1f}".format(crypto.sentiment_score) }}/10 ({{ crypto.sentiment_label }})</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h2>📰 Sentiment Analysis & Key Headlines</h2>
+    {% for crypto in cryptos %}
+        <div class="crypto-card">
+            <h3>{{ crypto.name }} ({{ "{:.1f}".format(crypto.sentiment_score) }}/10 - {{ crypto.sentiment_label }})</h3>
+            <ul>
+                {% for headline in crypto.headlines %}
+                    <li>{{ headline }}</li>
+                {% else %}
+                    <li>No recent news found.</li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endfor %}
+</body>
+</html>
